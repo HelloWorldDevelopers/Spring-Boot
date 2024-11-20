@@ -45,3 +45,10 @@ hit this command ( mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPass
 
 mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPassword -Djasypt.plugin.path="file:
 src/main/resources/application2.properties
+
+
+
+########   Note   ########
+when we deploy project on server you can set the envorment variable using below command 
+export JASYPT_ENCRYPTOR_PASSWORD=yourSecretPassword
+
