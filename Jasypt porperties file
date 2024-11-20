@@ -1,0 +1,31 @@
+1) add the maven depandency 
+   <dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+
+
+2)  add the maven plugin 
+      <plugin>
+ 					<groupId>com.github.ulisesbocchio</groupId>
+					<artifactId>jasypt-maven-plugin</artifactId>
+					<version>3.0.3</version>
+ 			</plugin>
+
+
+3) go to your project directory and hit below command 
+ choose your passowrd
+
+frist.name=vishal
+mvn jasypt:encrypt-value -Djasypt.encryptor.password=yourSecretPassword -Djasypt.plugin.value=vishal
+
+ after execute this command genrate ENC value like this   ENC(IsI6dWet1OFTxuw78eGsAZM6B78/myAzKbKHPYiPCGJgGHza+4OptJOVjMdyeO+1)
+and replace this value in to your properties file vlaue 
+
+frist.name=ENC(IsI6dWet1OFTxuw78eGsAZM6B78/myAzKbKHPYiPCGJgGHza+4OptJOVjMdyeO+1)
+
+4) run your spring boot project 
+   1) right click your project and choose  (run configuration ) and select (Argument) and past this command (-Djasypt.encryptor.password=yourSecretPassword)
+    in (VM argument )
