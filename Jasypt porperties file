@@ -41,3 +41,6 @@ frist.name=DEC(VISHAL)
 last.name=DEC(DABADE)
 
 hit this command ( mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPassword) and decrpt complete properties file 
+6) decript complete properties file 
+
+ mvn jasypt:decrypt -Djasypt.encryptor.password=yourSecretPassword
