@@ -35,12 +35,13 @@ frist.name=ENC(IsI6dWet1OFTxuw78eGsAZM6B78/myAzKbKHPYiPCGJgGHza+4OptJOVjMdyeO+1)
 
 
 
-5) encript complete proper file 
+5) encript complete prpperties file 
 
 frist.name=DEC(VISHAL)
 last.name=DEC(DABADE)
 
 hit this command ( mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPassword) and decrpt complete properties file 
-6) decript complete properties file 
+6) decript spacefic complete properties file 
 
- mvn jasypt:decrypt -Djasypt.encryptor.password=yourSecretPassword
+mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPassword -Djasypt.plugin.path="file:
+src/main/resources/application2.properties
