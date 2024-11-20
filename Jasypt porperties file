@@ -29,3 +29,15 @@ frist.name=ENC(IsI6dWet1OFTxuw78eGsAZM6B78/myAzKbKHPYiPCGJgGHza+4OptJOVjMdyeO+1)
 4) run your spring boot project 
    1) right click your project and choose  (run configuration ) and select (Argument) and past this command (-Djasypt.encryptor.password=yourSecretPassword)
     in (VM argument )
+
+
+
+
+
+
+5) encript complete proper file 
+
+frist.name=DEC(VISHAL)
+last.name=DEC(DABADE)
+
+hit this command ( mvn jasypt:encrypt -Djasypt.encryptor.password=yourSecretPassword) and decrpt complete properties file 
