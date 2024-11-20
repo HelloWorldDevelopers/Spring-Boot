@@ -52,3 +52,5 @@ src/main/resources/application2.properties
 when we deploy project on server you can set the envorment variable using below command 
 export JASYPT_ENCRYPTOR_PASSWORD=yourSecretPassword
 
+Video Link:  https://www.youtube.com/watch?v=VG3rWUqeOZA
+
