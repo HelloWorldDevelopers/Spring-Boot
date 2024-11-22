@@ -6,7 +6,7 @@
 6) redis-cli
 
 
-in java create bean for that
+in java create bean for that <String,String>
 
  @Bean
     public RedisTemplate redisTemplate(RedisConnectionFactory factory){
@@ -18,6 +18,27 @@ in java create bean for that
 
         return redisTemplate;
     }
+-----------------------
+
+  <String,Object>
+
+ @Bean
+	    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+	        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+	        redisTemplate.setConnectionFactory(factory);
+
+	        // Use StringRedisSerializer for keys
+	        redisTemplate.setKeySerializer(new StringRedisSerializer());
+
+	        // Use Jackson2JsonRedisSerializer for values (objects)
+	        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+	        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+
+	        // Optionally configure hash value serializer
+	        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+
+	        return redisTemplate;
+	    }
 
 ############################################33
 Note :
