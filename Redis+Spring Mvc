@@ -1,0 +1,236 @@
+
+ 
+Text Box 
+Table Of Contents 
+
+​​Contents 
+
+Redis Required in Spring MVC 
+
+ 
+
+We would like to add a few Maven dependencies while using the Redis cache. 
+
+Depending on the version of your project 
+
+Eg. 
+
+   <dependency> 
+
+                         <groupId>org.springframework.data</groupId> 
+
+                        <artifactId>spring-data-redis</artifactId> 
+
+                      <version>1.8.10.RELEASE</version> 
+
+</dependency> 
+
+  
+
+        <dependency> 
+
+                  <groupId>redis.clients</groupId> 
+
+                  <artifactId>jedis</artifactId> 
+
+                   <version>2.9.0</version> 
+
+        </dependency> 
+
+ 
+
+Used the @EnableCaching In app Config class to enable the cache. 
+
+ 
+
+@Configuration 
+
+@EnableWebMvc 
+
+@Async 
+
+@EnableScheduling 
+
+@EnableCaching 
+
+@ComponentScan(basePackages = "ai.rnt.*") 
+
+public class AppConfig implements WebMvcConfigurer { 
+
+ 
+
+} 
+
+ 
+
+Install Redis server locally on your machine. 
+
+https://github.com/tporadowski/redis/releases 
+
+Launch the Redis server. Before Start your project on your machine 
+
+ 
+
+ 
+
+Connect your application to the Redis server using JedisConnectionFactory 
+
+ 
+
+@Bean 
+
+public JedisConnectionFactory connectionFactory() { 
+
+JedisConnectionFactory factory = new JedisConnectionFactory(); 
+
+factory.setHostName("127.0.0.1"); 
+
+factory.setPort(6379); 
+
+factory.setTimeout(1000000); 
+
+return factory; 
+
+} 
+
+ 
+
+This code helps you return only ModelAndView. 
+
+ 
+
+@Bean 
+
+public RedisTemplate<String, ModelAndView> redisTemplate() { 
+
+RedisTemplate<String, ModelAndView> template = new RedisTemplate<>(); 
+
+template.setConnectionFactory(connectionFactory()); 
+
+template.setKeySerializer(new StringRedisSerializer()); 
+
+Jackson2JsonRedisSerializer<ModelAndView> 
+
+ jacksonSerializer = new          Jackson2JsonRedisSerializer<>( 
+
+ 	ModelAndView.class); 
+
+ObjectMapper modelAndViewObjectMapper = new ObjectMapper(); 
+
+modelAndViewObjectMapper.configure(DeserializationFeature.FAIL_O N_UNKNOWN_PROPERTIES, false); 
+
+jacksonSerializer.setObjectMapper(modelAndViewObjectMapper); 
+
+template.setValueSerializer(jacksonSerializer); 
+
+return template; 
+
+} 
+
+Create cache manager for Redis cache 
+
+ 
+
+@Bean 
+
+public CacheManager cacheManager() { 
+
+return new RedisCacheManager(redisTemplate()); 
+
+} 
+
+Coding Standards  Required For Redis Cache 
+
+ 
+
+ 
+
+When calling Java objects. In jstl, we use variable names. 
+
+Eg.  
+
+${user.getName()} 
+
+${user.name} 
+
+ 
+
+Do not iterate the list during the session. 
+
+when you return any page then use every time ModelAndView 
+
+ 
+
+ 
+
+Redis Cache Annotations 
+
+@Cacheable  
+
+@CacheEvict 
+
+@CachePut 
+
+ 
+
+ 
+
+Redis cache for Spring boot 
+
+ 
+
+1.We would like to add a few Maven dependencies while using the Redis cache. 
+
+Depending on the version of your project 
+
+ 
+
+Eg. 
+
+<dependency> 
+
+    <groupId>org.springframework.boot</groupId> 
+
+    <artifactId>spring-boot-starter-cache</artifactId> 
+
+    <version>2.4.3</version> 
+
+</dependency> 
+
+ 
+
+<dependency> 
+
+    <groupId>org.springframework.boot</groupId> 
+
+    <artifactId>spring-boot-starter-data-redis</artifactId> 
+
+    <version>2.4.3</version> 
+
+</dependency> 
+
+ 
+
+       2.Install Redis server locally on your machine. 
+
+https://redis.io/download/ 
+
+ 
+
+     3. When starting the application in Spring Boot, add @EnableCaching. 
+
+ 
+
+@SpringBootApplication 
+
+@EnableCaching 
+
+public class RntBoxApplication { 
+
+public static void main(String[] args) { 
+
+SpringApplication.run(RntBoxApplication.class, args); 
+
+} 
+
+} 
