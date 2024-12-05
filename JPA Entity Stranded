@@ -17,3 +17,40 @@ public class Student {
 create gender column in database and only store male or female value in database not other value (Enumerated)
 NOTE ::::::: for use Enumerated
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@PrePersist
+public void logNewUserAttempt() {
+    log.info("Attempting to add new user with username: " + userName);
+}
+    
+@PostPersist
+public void logNewUserAdded() {
+    log.info("Added user '" + userName + "' with ID: " + id);
+}
+    
+@PreRemove
+public void logUserRemovalAttempt() {
+    log.info("Attempting to delete user: " + userName);
+}
+    
+@PostRemove
+public void logUserRemoval() {
+    log.info("Deleted user: " + userName);
+}
+
+@PreUpdate
+public void logUserUpdateAttempt() {
+    log.info("Attempting to update user: " + userName);
+}
+
+@PostUpdate
+public void logUserUpdate() {
+    log.info("Updated user: " + userName);
+}
+
+@PostLoad
+public void logUserLoad() {
+    fullName = firstName + " " + lastName;
+}
+
+NOTE :::------   jpa life cycle method
+----------------------------------------------------------------------------------------------------------------------------------------------------------
