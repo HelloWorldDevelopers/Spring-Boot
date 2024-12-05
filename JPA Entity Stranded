@@ -17,6 +17,7 @@ public class Student {
 create gender column in database and only store male or female value in database not other value (Enumerated)
 NOTE ::::::: for use Enumerated
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 @PrePersist
 public void logNewUserAttempt() {
     log.info("Attempting to add new user with username: " + userName);
@@ -54,3 +55,28 @@ public void logUserLoad() {
 
 NOTE :::------   jpa life cycle method
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+@Embeddable
+public class ContactPerson {
+
+    private String firstName;
+
+    private String lastName;
+
+    private String phone;
+
+ }
+
+
+@Entity
+public class Company {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+  
+
+    @Embedded
+    private ContactPerson contactPerson;
+
+ }
