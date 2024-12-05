@@ -1,0 +1,19 @@
+public enum Gender {
+    MALE, 
+    FEMALE
+}
+
+@Entity
+@Table(name="STUDENT")
+public class Student {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    
+ }
+create gender column in database and only store male or female value in database not other value (Enumerated)
+NOTE ::::::: for use Enumerated
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
