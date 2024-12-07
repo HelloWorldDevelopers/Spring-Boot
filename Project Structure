@@ -1,1 +1,2 @@
 1) use Actuator with custome endpoint (search how to create custome Actuator endpoints )  (use reflection depandency for read annotated class information )
+  also use (InfoContributor for add custome information in info endpoint)
